@@ -15,13 +15,13 @@ Use `bunx` instead of `npx` if the project uses bun (`bun.lock` present).
 ```bash
 npx expo install <package>  # ALWAYS use instead of npm/yarn/pnpm/bun add — resolves SDK-compatible versions
 npx expo start              # start the dev server
-npx expo lint               # lint
-npx tsc --noEmit            # typecheck
+npm run check               # typecheck and lint (run this before finishing)
+npm run lint:fix            # apply ESLint fixes
 npx expo-doctor             # diagnose dependency and config issues
 npx expo install --fix      # fix incompatible package versions
 ```
 
-Run lint and typecheck before declaring any task done.
+Run `npm run check` before declaring any task done. Use it rather than `npx expo lint`, which only lints JS and TS files in `src/`, `app/` and `components/`, and caches results between runs.
 
 ## Navigation & Routing
 
@@ -39,3 +39,9 @@ Docs: https://docs.expo.dev/eas/index.md
 - If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
+
+## Hard Rules
+
+These hold unless the current request explicitly says otherwise:
+
+- **Git**: read-only `git` commands only (`status`, `diff`, `log`, `show`, etc). Never run commands that change the repo, index, or working tree.
