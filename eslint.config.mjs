@@ -1,5 +1,5 @@
-import antfu from "@antfu/eslint-config"
 import expo from "eslint-plugin-expo"
+import antfu from "@antfu/eslint-config"
 import reactNative from "eslint-plugin-react-native"
 
 export default antfu(
@@ -26,6 +26,7 @@ export default antfu(
     rules: {
       // Variables and functions
       "prefer-const": "error",
+      "perfectionist/sort-imports": "off",
       "no-var": "error",
       "no-empty-function": "error",
       "no-unused-vars": "off",

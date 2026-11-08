@@ -3,7 +3,9 @@
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": ".cache/tsconfig.tsbuildinfo",
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext"
+    ],
     "paths": {
       "@/*": [
         "./src/*"
@@ -30,6 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts",
+    "nativewind-env.d.ts"
   ]
 }
