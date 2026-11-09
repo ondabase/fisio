@@ -45,3 +45,18 @@ Docs: https://docs.expo.dev/eas/index.md
 These hold unless the current request explicitly says otherwise:
 
 - **Git**: read-only `git` commands only (`status`, `diff`, `log`, `show`, etc). Never run commands that change the repo, index, or working tree.
+
+## Code Style
+
+Follow `docs/code-style.md` for import grouping, export placement, and type syntax. These are guidelines, not lint rules: `npm run check` will not flag them, so apply them yourself.
+
+## UI Components
+
+When creating or modifying reusable UI components:
+
+- Read and follow `docs/ui-components.md`.
+- Use the `create-ui-component` skill when available.
+- Follow existing component conventions and design tokens.
+- Do not introduce third-party UI component libraries.
+
+Project-specific UI guidelines take precedence over generic component patterns.

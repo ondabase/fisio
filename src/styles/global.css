@@ -3,3 +3,51 @@
 @import "tailwindcss/utilities.css";
 
 @import "nativewind/theme";
+
+/*
+ * Design tokens
+ *
+ * Semantic colors follow shadcn naming (`bg-primary`, `text-primary-foreground`).
+ * Values here are the light theme; dark overrides live in the media query below.
+ * A token redefined for dark mode stays a runtime variable, so it follows the
+ * system appearance (and `Appearance.setColorScheme()`) without a rebuild.
+ *
+ * Add tokens only when a component needs them.
+ */
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+
+  --color-primary: #171717;
+  --color-primary-foreground: #fafafa;
+
+  --color-secondary: #f4f4f5;
+  --color-secondary-foreground: #171717;
+
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #e4e4e7;
+
+  /* Android ripple colors: `highlight` on light surfaces, `highlight-inverse` on dark ones. */
+  --color-highlight: rgba(0, 0, 0, 0.1);
+  --color-highlight-inverse: rgba(255, 255, 255, 0.24);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #fafafa;
+
+    --color-primary: #fafafa;
+    --color-primary-foreground: #171717;
+
+    --color-secondary: #27272a;
+    --color-secondary-foreground: #fafafa;
+
+    --color-border: #3f3f46;
+
+    --color-highlight: rgba(255, 255, 255, 0.16);
+    --color-highlight-inverse: rgba(0, 0, 0, 0.16);
+  }
+}
