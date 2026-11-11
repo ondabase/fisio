@@ -16,12 +16,13 @@ Use `bunx` instead of `npx` if the project uses bun (`bun.lock` present).
 npx expo install <package>  # ALWAYS use instead of npm/yarn/pnpm/bun add — resolves SDK-compatible versions
 npx expo start              # start the dev server
 npm run check               # typecheck and lint (run this before finishing)
+npm test                    # run the Jest suite (run this before finishing too)
 npm run lint:fix            # apply ESLint fixes
 npx expo-doctor             # diagnose dependency and config issues
 npx expo install --fix      # fix incompatible package versions
 ```
 
-Run `npm run check` before declaring any task done. Use it rather than `npx expo lint`, which only lints JS and TS files in `src/`, `app/` and `components/`, and caches results between runs.
+Run `npm run check` and `npm test` before declaring any task done. Tests sit next to the code they cover as `*.test.ts(x)`, never inside `src/app/` (every file there is a route). Use it rather than `npx expo lint`, which only lints JS and TS files in `src/`, `app/` and `components/`, and caches results between runs.
 
 ## Navigation & Routing
 

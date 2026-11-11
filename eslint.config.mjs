@@ -175,16 +175,32 @@ export default antfu(
       ],
       "react-native/no-inline-styles": "error",
       // Raw text outside <Text> throws on native. Link and Button wrap string children in <Text>,
-      // and native tab labels take their string child as the label.
+      // ButtonText is a <Text>, and native tab labels take their string child as the label.
       "react-native/no-raw-text": [
         "error",
         {
-          skip: ["Link", "Button", "NativeTabs.Trigger.Label"],
+          skip: [
+            "Link",
+            "Button",
+            "ButtonText",
+            "NativeTabs.Trigger.Label",
+          ],
         },
       ],
       "react-native/no-single-element-style-arrays": "error",
       "react-native/no-unused-styles": "error",
       "react-native/split-platform-components": "error",
+    },
+  },
+  // Jest tests.
+  {
+    files: ["**/*.test.{ts,tsx}"],
+    rules: {
+      // A top-level `describe` names the unit under test, often a PascalCase component.
+      "test/prefer-lowercase-title": [
+        "error",
+        { ignoreTopLevelDescribe: true },
+      ],
     },
   },
 )
