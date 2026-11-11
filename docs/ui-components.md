@@ -45,6 +45,29 @@ NativeWind is the standard styling solution.
 - Use React Native's `style` prop when necessary for dynamic or unsupported styles.
 - Do not introduce competing styling frameworks.
 
+## Design Tokens
+
+Tokens live in `@theme` in `src/styles/global.css`. NativeWind's rem is 14px, so Tailwind's default numeric scales are off-grid (one spacing step is 3.5px). Prefer the named tokens below for type and screen layout.
+
+- **Type:** `text-display`, `text-title`, `text-heading`, `text-subheading`, `text-body`, `text-callout`, `text-footnote`, `text-caption`. Each sets size, line height, and weight. Use them through `<Text variant>` rather than raw classes.
+- **Color tones:** `foreground`, `soft-foreground`, `muted-foreground`, plus `primary` / `primary-soft` / `primary-deep` and the semantic `success`, `caution`, `urgent`, `info` (each with a `-soft` background). Safety outcomes use `success` (eligible), `caution` (see a clinician), and `urgent` (seek care now). Always pair a tone with an icon or text.
+- **Layout:** `px-screen` (gutter), `gap-section` (between sections), `p-card` (inside cards).
+- **Radii:** `rounded-card`, `rounded-control`.
+
+When adding a token:
+
+- Add any new `text-*`, spacing, or radius name to `extendTailwindMerge` in `src/lib/utils.ts`. Otherwise `cn()` misreads it (for example, as a color) and drops it.
+- Write `--text-*--line-height` as a unitless ratio of the font size. react-native-css multiplies a line height read from a variable by the font size, so `24px` renders as 24 × the font size.
+
+## Primitives
+
+- `Text` (`ui/text.tsx`): type scale and tone. The `display`, `title`, and `heading` styles get the heading role automatically.
+- `Screen` (`ui/screen.tsx`): the scrolling body of a screen, with gutters and safe areas. Pass `hasHeader` under a native header, and `footer` for a pinned action. Tab screens must sit inside `ScreenTabsProvider`; the tabs layout already sets this up.
+- `Card` (`ui/card.tsx`): a surface, tinted by `variant` for states.
+- `ListRow` and `ListGroup` (`ui/list-row.tsx`): rows for settings and details. A row is a button only when it has `onPress`.
+- `Icon` (`ui/icon.tsx`): SF / Material symbols colored with a `text-*` class. Decorative unless given an `accessibilityLabel`.
+- `Button` (`ui/button.tsx`).
+
 ## Component Variants
 
 Use shadcn-inspired variant patterns when appropriate.

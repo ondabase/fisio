@@ -138,8 +138,8 @@ I'm recommending these. Each is confirmed at the start of the milestone that fir
 src/
   app/                         # routes only
     _layout.tsx                # providers (Clerk, Query, Sentry) + auth/onboarding gate
-    (auth)/welcome.tsx, sign-in.tsx
-    (onboarding)/consent.tsx, profile.tsx
+    (auth)/welcome.tsx             # Google sign-in happens here; no separate sign-in screen
+    onboarding/consent.tsx, profile.tsx   # a plain folder: a (group) would clash with the Profile tab's /profile URL
     (app)/_layout.tsx          # Stack: tabs + modals
     (app)/(tabs)/_layout.tsx   # NativeTabs: today, program, progress, profile
     (app)/assessment/          # modal stack: body-map, question/[id], result
@@ -166,7 +166,7 @@ Rule: `src/clinical` must never import from `react-native`, `expo-*`, or `src/se
 - Remove the `demo/` route. Set up the route skeleton above with placeholder screens. NativeTabs with 4 tabs and SF/Material icons.
 - Env handling (`EXPO_PUBLIC_*` client vars only for public keys). `eas.json` profiles: development, preview, production.
 - jest-expo with a first test. CI (GitHub Actions or EAS Workflows): `npm run check` plus tests.
-- **Done when**: a dev build runs on iOS and Android with tabs, modal routes, and both themes.
+- **Done when**: a dev build runs on iOS and Android with tabs and modal routes (light mode only).
 
 #### M1 — Auth, onboarding, user record
 - Neon project with dev, preview, and prod branches. Drizzle schema: `users`. drizzle-kit migrations.

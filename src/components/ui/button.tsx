@@ -1,16 +1,15 @@
 import type { VariantProps } from "class-variance-authority"
-import type { SymbolViewProps } from "expo-symbols"
 import type { PressableProps, TextProps } from "react-native"
 import type { ComponentRef, ReactNode, Ref } from "react"
+import type { IconProps } from "@/components/ui/icon"
 
-import { SymbolView } from "expo-symbols"
 import { createContext, use } from "react"
 import { ActivityIndicator, Pressable, Text, View } from "react-native"
 
 import { cva } from "class-variance-authority"
-import { styled } from "react-native-css"
 
 import { cn } from "@/lib/utils"
+import { Icon } from "@/components/ui/icon"
 
 /*
  * Pressed feedback follows each platform's convention:
@@ -198,15 +197,7 @@ function ButtonText({ className, ...props }: ButtonTextProps) {
   return <Text className={cn(buttonTextVariants({ variant, size }), className)} {...props} />
 }
 
-const StyledSymbolView = styled(SymbolView, {
-  className: {
-    target: "style",
-    nativeStyleMapping: { color: "tintColor" },
-  },
-})
-
-type ButtonIconProps = Omit<SymbolViewProps, "tintColor" | "size"> & {
-  className?: string
+type ButtonIconProps = Omit<IconProps, "size" | "accessibilityLabel"> & {
   /** Point size. Defaults to a size matched to the button size. */
   size?: number
 }
@@ -219,11 +210,9 @@ function ButtonIcon({ className, size, ...props }: ButtonIconProps) {
   const context = useButtonContext("ButtonIcon")
 
   return (
-    <StyledSymbolView
+    <Icon
       size={size ?? iconPointSizes[context.size]}
       className={cn(buttonTextVariants({ variant: context.variant }), className)}
-      accessibilityElementsHidden
-      importantForAccessibility="no-hide-descendants"
       {...props}
     />
   )

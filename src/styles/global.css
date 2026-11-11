@@ -51,4 +51,79 @@
   /* Android ripple colors: `highlight` on light surfaces, `highlight-inverse` on dark ones. */
   --color-highlight: rgba(0, 0, 0, 0.1);
   --color-highlight-inverse: rgba(255, 255, 255, 0.24);
+
+  /*
+   * Selected and highlighted surfaces: Soft Teal from the design, with Deep
+   * Teal for text on it (`primary` on `primary-soft` is below 4.5:1).
+   */
+  --color-primary-soft: #eaf7f5;
+  --color-primary-deep: #116b70;
+
+  /*
+   * Semantic and safety colors. Each tone has a strong color for icons, text,
+   * and filled buttons, and a soft background for tinted cards and badges.
+   * Every strong color passes 4.5:1 on white and on its own soft color.
+   * Never use the tone alone to carry meaning: pair it with an icon or text.
+   *
+   * - success: eligible, completed, improving.
+   * - caution: see a clinician before starting (non-urgent red flag).
+   * - urgent: seek care now (urgent red flag), call 911.
+   * - info: neutral guidance.
+   */
+  --color-success: #1b7a43;
+  --color-success-soft: #e9f6ee;
+  --color-caution: #a3570b;
+  --color-caution-soft: #fdf3e2;
+  --color-urgent: #c62828;
+  --color-urgent-soft: #fdeceb;
+  --color-info: #2559c7;
+  --color-info-soft: #eaf3ff;
+
+  /*
+   * Type scale, in points. NativeWind's rem is 14px, so Tailwind's default
+   * `text-*` sizes are off-scale: use these instead. Sizes follow the iOS
+   * text styles and scale with the system font size.
+   *
+   * Line heights must be unitless ratios of the font size. react-native-css
+   * multiplies a line height read from a variable by the font size, so
+   * `41px` would become 41 × 34pt. The comment gives the resulting points.
+   */
+  --text-display: 34px;
+  --text-display--line-height: 1.2059; /* 41pt */
+  --text-display--font-weight: 700;
+  --text-display--letter-spacing: -0.4px;
+  --text-title: 28px;
+  --text-title--line-height: 1.2143; /* 34pt */
+  --text-title--font-weight: 700;
+  --text-title--letter-spacing: -0.3px;
+  --text-heading: 22px;
+  --text-heading--line-height: 1.2727; /* 28pt */
+  --text-heading--font-weight: 600;
+  --text-subheading: 17px;
+  --text-subheading--line-height: 1.2941; /* 22pt */
+  --text-subheading--font-weight: 600;
+  --text-body: 17px;
+  --text-body--line-height: 1.4118; /* 24pt */
+  --text-callout: 15px;
+  --text-callout--line-height: 1.3333; /* 20pt */
+  --text-footnote: 13px;
+  --text-footnote--line-height: 1.3846; /* 18pt */
+  --text-caption: 12px;
+  --text-caption--line-height: 1.3333; /* 16pt */
+  --text-caption--font-weight: 500;
+
+  /*
+   * Layout spacing, in points. Use these for screen-level rhythm; Tailwind's
+   * numeric steps (3.5px each) stay fine for spacing inside components.
+   * - screen: horizontal gutter of a screen.
+   * - section: gap between sections of a screen.
+   * - card: padding inside a card.
+   */
+  --spacing-screen: 24px;
+  --spacing-section: 28px;
+  --spacing-card: 16px;
+
+  /* Corner radii, in points. */
+  --radius-control: 12px;
+  --radius-card: 20px;
 }

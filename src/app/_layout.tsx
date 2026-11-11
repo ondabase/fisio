@@ -21,9 +21,12 @@ if (publishableKey === "") {
 void SplashScreen.preventAutoHideAsync()
 
 /**
- * Signed out: only the auth screens are reachable. Signed in: only the app.
- * When the session changes, Expo Router redirects to the other group.
- * Legal pages and the button demo stay reachable either way.
+ * Signed out: only the auth screens are reachable. Signed in: only the app
+ * and onboarding. When the session changes, Expo Router redirects to the
+ * other group. Legal pages stay reachable either way.
+ *
+ * TODO(M1): once consent is stored server-side, guard onboarding and the app
+ * separately, so a signed-in user without consent can only reach onboarding.
  */
 function RootNavigator() {
   const { isLoaded, isSignedIn } = useAuth()
@@ -43,6 +46,7 @@ function RootNavigator() {
     <Stack screenOptions={{ headerBackButtonDisplayMode: "minimal" }}>
       <Stack.Protected guard={signedIn} redirectTo="/welcome">
         <Stack.Screen name="(app)" options={{ headerShown: false }} />
+        <Stack.Screen name="onboarding" options={{ headerShown: false }} />
       </Stack.Protected>
       <Stack.Protected guard={!signedIn} redirectTo="/">
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
