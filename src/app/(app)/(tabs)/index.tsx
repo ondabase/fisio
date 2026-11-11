@@ -22,7 +22,6 @@ export default function Today() {
       <Button variant="secondary" onPress={() => router.push("/session/demo")}>Start session</Button>
       <Button variant="secondary" onPress={() => router.push("/check-in")}>Weekly check-in</Button>
       <Button variant="secondary" onPress={() => router.push("/paywall")}>Paywall</Button>
-      <Button variant="outline" onPress={() => router.push("/onboarding/consent")}>Onboarding</Button>
     </PlaceholderScreen>
   )
 }

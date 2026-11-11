@@ -17,12 +17,13 @@ npx expo install <package>  # ALWAYS use instead of npm/yarn/pnpm/bun add — re
 npx expo start              # start the dev server
 npm run check               # typecheck and lint (run this before finishing)
 npm test                    # run the Jest suite (run this before finishing too)
+npm run test:integration    # API tests against the Neon dev branch (run after server changes)
 npm run lint:fix            # apply ESLint fixes
 npx expo-doctor             # diagnose dependency and config issues
 npx expo install --fix      # fix incompatible package versions
 ```
 
-Run `npm run check` and `npm test` before declaring any task done. Tests sit next to the code they cover as `*.test.ts(x)`, never inside `src/app/` (every file there is a route). Use it rather than `npx expo lint`, which only lints JS and TS files in `src/`, `app/` and `components/`, and caches results between runs.
+Run `npm run check` and `npm test` before declaring any task done. Tests sit next to the code they cover as `*.test.ts(x)`, never inside `src/app/` (every file there is a route). Server tests live in `src/server/` and run in plain Node; database tests are named `*.integration.test.ts`. After changing server code, also run `npm run test:integration`. Use it rather than `npx expo lint`, which only lints JS and TS files in `src/`, `app/` and `components/`, and caches results between runs.
 
 ## Navigation & Routing
 

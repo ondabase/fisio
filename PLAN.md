@@ -1,10 +1,10 @@
 # Fisio — MVP Plan
 
-This is the single source of truth for the Fisio MVP. Part 1 is the agreed specification: what we're building and why. Part 2 is the implementation plan: the order we'll build it in. We implement one milestone at a time and tick it off below.
+This is the single source of truth for the Fisio MVP. Part 1 is the agreed specification: what we're building and why. Part 2 is the implementation plan: the order we'll build it in. We implement one milestone at a time and tick it off below. For now, milestones are verified on iOS only; Android checks start later.
 
 ## Progress
-- [ ] M0 — Foundations
-- [ ] M1 — Auth, onboarding, user record
+- [x] M0 — Foundations (iOS verified; Android deferred)
+- [x] M1 — Auth, onboarding, user record (iOS verified; Android deferred)
 - [ ] M2 — Clinical content model + engine + vignettes
 - [ ] M3 — Body map
 - [ ] M4 — Assessment end to end

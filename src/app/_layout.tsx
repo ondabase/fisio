@@ -1,9 +1,14 @@
 import { Stack } from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
-import { ClerkProvider, useAuth } from "@clerk/expo"
+import { ClerkProvider, useAuth, useClerk } from "@clerk/expo"
 import { tokenCache } from "@clerk/expo/token-cache"
+import { QueryClientProvider, useQueryClient } from "@tanstack/react-query"
+
+import { useMe } from "@/features/account/use-me"
+import { createQueryClient } from "@/lib/query-client"
+import { AccountError } from "@/features/account/account-error"
 
 import "@/styles/global.css"
 
@@ -16,36 +21,61 @@ if (publishableKey === "") {
   throw new Error("Missing EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY. Run `npx clerk@latest env pull`, then restart the dev server.")
 }
 
-// Keep the splash screen up until Clerk has restored any saved session, so a
-// signed-in user never sees the auth screen flash by.
+// Keep the splash screen up until Clerk has restored any saved session and
+// the user's record has loaded, so no screen flashes by on launch.
 void SplashScreen.preventAutoHideAsync()
 
 /**
- * Signed out: only the auth screens are reachable. Signed in: only the app
- * and onboarding. When the session changes, Expo Router redirects to the
- * other group. Legal pages stay reachable either way.
- *
- * TODO(M1): once consent is stored server-side, guard onboarding and the app
- * separately, so a signed-in user without consent can only reach onboarding.
+ * Three mutually exclusive states, each with only its own screens reachable:
+ * - Signed out: the auth screens.
+ * - Signed in without the current consent: onboarding.
+ * - Signed in with consent: the app.
+ * When the state changes, Expo Router redirects to the group that's now
+ * reachable. Legal pages stay reachable in every state.
  */
 function RootNavigator() {
   const { isLoaded, isSignedIn } = useAuth()
+  const { signOut } = useClerk()
+  const queryClient = useQueryClient()
+  const me = useMe()
   const signedIn = isSignedIn === true
+  const consented = me.data?.hasCurrentConsent === true
+
+  // Drop the previous user's cached data on sign-out.
+  useEffect(() => {
+    if (isLoaded && !signedIn) {
+      queryClient.clear()
+    }
+  }, [isLoaded, signedIn, queryClient])
+
+  const ready = isLoaded && (!signedIn || me.data !== undefined || me.isError)
 
   useEffect(() => {
-    if (isLoaded) {
+    if (ready) {
       SplashScreen.hide()
     }
-  }, [isLoaded])
+  }, [ready])
 
-  if (!isLoaded) {
+  if (!ready) {
     return null
+  }
+
+  if (signedIn && me.data === undefined) {
+    return (
+      <AccountError
+        retrying={me.isFetching}
+        onRetry={() => void me.refetch()}
+        onSignOut={() => void signOut()}
+      />
+    )
   }
 
   return (
     <Stack screenOptions={{ headerBackButtonDisplayMode: "minimal" }}>
-      <Stack.Protected guard={signedIn} redirectTo="/welcome">
+      <Stack.Protected guard={signedIn && consented} redirectTo={signedIn ? "/onboarding/consent" : "/welcome"}>
         <Stack.Screen name="(app)" options={{ headerShown: false }} />
+      </Stack.Protected>
+      <Stack.Protected guard={signedIn && !consented} redirectTo={signedIn ? "/" : "/welcome"}>
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
       </Stack.Protected>
       <Stack.Protected guard={!signedIn} redirectTo="/">
@@ -56,10 +86,14 @@ function RootNavigator() {
 }
 
 export default function RootLayout() {
+  const [queryClient] = useState(createQueryClient)
+
   return (
     // The token cache (expo-secure-store) is native only, so it's undefined on web.
     <ClerkProvider publishableKey={publishableKey} {...(tokenCache !== undefined && { tokenCache })}>
-      <RootNavigator />
+      <QueryClientProvider client={queryClient}>
+        <RootNavigator />
+      </QueryClientProvider>
     </ClerkProvider>
   )
 }
