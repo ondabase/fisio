@@ -78,7 +78,7 @@ Aim for a premium, minimal, modern mobile experience.
 - Comfortable touch targets.
 - Subtle, responsive interaction feedback.
 - Consistent disabled and loading states.
-- Light and dark mode support.
+- Light mode only for now. Do not add dark-mode tokens or `dark:` classes.
 - Avoid unnecessary visual complexity.
 
 ## Accessibility

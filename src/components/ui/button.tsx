@@ -120,6 +120,11 @@ type ButtonBaseProps = Omit<PressableProps, "children"> & {
   /** Shows a spinner, keeps the button's width, and ignores presses. */
   loading?: boolean
   /**
+   * Classes for the row that holds the children. It hugs its content and is
+   * centered by default; `flex-1 justify-between` spreads children edge to edge.
+   */
+  contentClassName?: string
+  /**
    * A string is rendered as the label. For icons, compose
    * `<ButtonIcon />` and `<ButtonText />` as children.
    */
@@ -138,6 +143,7 @@ function Button({
   loading = false,
   disabled,
   className,
+  contentClassName,
   children,
   hitSlop,
   role = "button",
@@ -168,7 +174,7 @@ function Button({
         {...props}
       >
         {/* Hidden rather than removed while loading, so the width stays the same. */}
-        <View className={cn(buttonContentVariants({ size }), loading && "opacity-0")}>
+        <View className={cn(buttonContentVariants({ size }), contentClassName, loading && "opacity-0")}>
           {isTextChild
             ? <ButtonText>{children}</ButtonText>
             : children}

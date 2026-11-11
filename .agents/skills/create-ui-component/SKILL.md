@@ -39,7 +39,7 @@ Follow the project's existing conventions.
 - Support `className` customization.
 - Implement appropriate interaction states.
 - Preserve relevant native props and accessibility behavior.
-- Support light and dark themes.
+- Target light mode only (dark mode is not supported for now).
 
 ### 3. Validate
 

@@ -8,18 +8,37 @@
  * Design tokens
  *
  * Semantic colors follow shadcn naming (`bg-primary`, `text-primary-foreground`).
- * Values here are the light theme; dark overrides live in the media query below.
- * A token redefined for dark mode stays a runtime variable, so it follows the
- * system appearance (and `Appearance.setColorScheme()`) without a rebuild.
+ * The app is light mode only for now (`userInterfaceStyle: "light"` in app.json),
+ * so there are no dark overrides.
  *
  * Add tokens only when a component needs them.
  */
 @theme {
-  --color-background: #ffffff;
+  --color-background: #f9fafa;
+  /* Faint teal the background fades to toward the screen edges. */
+  --color-background-tint: #edf5f5;
   --color-foreground: #0a0a0a;
+  /* Secondary body text, and the quieter `muted` for supporting copy. */
+  --color-soft-foreground: #404246;
+  --color-muted-foreground: #5f636a;
 
-  --color-primary: #171717;
-  --color-primary-foreground: #fafafa;
+  --color-card: #ffffff;
+
+  /* Brand teal. */
+  --color-primary: #077f83;
+  --color-primary-foreground: #ffffff;
+
+  /* Text-weight teal for links. */
+  --color-accent: #129391;
+
+  /* Logo: the wave mark and the "Fisio" wordmark. */
+  --color-brand-mark: #0e9b9c;
+  --color-brand-ink: #1b2834;
+
+  /* Near-black surface for high-contrast buttons, such as Sign in with Apple. */
+  --color-contrast: #2d3136;
+  --color-contrast-deep: #17181b;
+  --color-contrast-foreground: #ffffff;
 
   --color-secondary: #f4f4f5;
   --color-secondary-foreground: #171717;
@@ -32,22 +51,4 @@
   /* Android ripple colors: `highlight` on light surfaces, `highlight-inverse` on dark ones. */
   --color-highlight: rgba(0, 0, 0, 0.1);
   --color-highlight-inverse: rgba(255, 255, 255, 0.24);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0a0a0a;
-    --color-foreground: #fafafa;
-
-    --color-primary: #fafafa;
-    --color-primary-foreground: #171717;
-
-    --color-secondary: #27272a;
-    --color-secondary-foreground: #fafafa;
-
-    --color-border: #3f3f46;
-
-    --color-highlight: rgba(255, 255, 255, 0.16);
-    --color-highlight-inverse: rgba(0, 0, 0, 0.16);
-  }
 }
