@@ -1,49 +1,52 @@
-# Welcome to your Expo app 👋
+# Fisio
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Guided, PT-authored recovery programs for low back pain. An [Expo](https://expo.dev) app for iOS and Android. See [PLAN.md](./PLAN.md) for the spec and milestones, and [AGENTS.md](./AGENTS.md) for conventions.
 
 ## Get started
 
-1. Install dependencies
+1. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Set up environment variables. Copy the template, then fill it in (`npx clerk@latest env pull` writes the Clerk keys):
 
    ```bash
-   npx expo start
+   cp .env.example .env
    ```
 
-In the output, you'll find options to open the app in a
+3. Build and run a development build. The app uses native modules, so Expo Go is not supported.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   npx expo run:ios       # or: npx expo run:android
+   ```
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   After the first build, `npx expo start` is enough until native dependencies change.
 
 ## Checks
 
-Run `npm run check` to typecheck and lint.
+```bash
+npm run check   # typecheck and lint
+npm test        # Jest
+```
 
-## Other setup steps
+CI runs both on every pull request and on pushes to `main` ([.github/workflows/ci.yml](.github/workflows/ci.yml)).
 
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## EAS builds
 
-## Learn more
+Build profiles live in [eas.json](./eas.json):
 
-To learn more about developing your project with Expo, look at the following resources:
+| Profile | Use | Distribution |
+|---|---|---|
+| `development` | Dev client for devices | Internal |
+| `development-simulator` | Dev client for the iOS Simulator | Internal |
+| `preview` | Release build for testers | Internal |
+| `production` | Store build (build number auto-increments) | Store |
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Each profile reads EAS environment variables from the matching environment (`development`, `preview`, `production`). Local `.env` files are not uploaded, so set the variables in [.env.example](./.env.example) on EAS for each environment:
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npx eas-cli@latest env:create --environment development --name EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY --value <key> --visibility plaintext
+npx eas-cli@latest build --profile development --platform ios
+```
