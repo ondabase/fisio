@@ -1,15 +1,12 @@
 import { NativeTabs } from "expo-router/native-tabs"
 
+import { colors } from "@/styles/colors"
 import { ScreenTabsProvider } from "@/components/ui/screen"
-
-// Native tabs take a color value rather than a class, so this repeats the
-// `--color-primary` token from global.css. Keep the two in sync.
-const PRIMARY = "#077f83"
 
 export default function TabsLayout() {
   return (
     <ScreenTabsProvider>
-      <NativeTabs tintColor={PRIMARY}>
+      <NativeTabs tintColor={colors.primary}>
         <NativeTabs.Trigger name="index">
           <NativeTabs.Trigger.Label>Today</NativeTabs.Trigger.Label>
           <NativeTabs.Trigger.Icon sf={{ default: "sun.max", selected: "sun.max.fill" }} md="today" />

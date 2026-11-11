@@ -18,12 +18,17 @@ npx expo start              # start the dev server
 npm run check               # typecheck and lint (run this before finishing)
 npm test                    # run the Jest suite (run this before finishing too)
 npm run test:integration    # API tests against the Neon dev branch (run after server changes)
+npm run test:clinical       # clinical engine tests; 100% coverage required (run after src/clinical changes)
 npm run lint:fix            # apply ESLint fixes
 npx expo-doctor             # diagnose dependency and config issues
 npx expo install --fix      # fix incompatible package versions
 ```
 
-Run `npm run check` and `npm test` before declaring any task done. Tests sit next to the code they cover as `*.test.ts(x)`, never inside `src/app/` (every file there is a route). Server tests live in `src/server/` and run in plain Node; database tests are named `*.integration.test.ts`. After changing server code, also run `npm run test:integration`. Use it rather than `npx expo lint`, which only lints JS and TS files in `src/`, `app/` and `components/`, and caches results between runs.
+Run `npm run check` and `npm test` before declaring any task done. Tests sit next to the code they cover as `*.test.ts(x)`, never inside `src/app/` (every file there is a route). Server tests live in `src/server/` and run in plain Node; database tests are named `*.integration.test.ts`. After changing server code, also run `npm run test:integration`; after changing `src/clinical`, run `npm run test:clinical`.
+
+## Clinical engine
+
+`src/clinical` decides safety outcomes. Keep it pure (no I/O, no React Native, Expo, or server imports; ESLint enforces this) and deterministic. Never weaken a safety rule, vignette, or engine invariant to make a test pass: change the content version instead and say so. Content marked DRAFT is placeholder, not clinical guidance. Use it rather than `npx expo lint`, which only lints JS and TS files in `src/`, `app/` and `components/`, and caches results between runs.
 
 ## Navigation & Routing
 

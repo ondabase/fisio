@@ -4,10 +4,11 @@ import { useEffect, useState } from "react"
 
 import { ClerkProvider, useAuth, useClerk } from "@clerk/expo"
 import { tokenCache } from "@clerk/expo/token-cache"
-import { QueryClientProvider, useQueryClient } from "@tanstack/react-query"
+import { useQueryClient } from "@tanstack/react-query"
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client"
 
 import { useMe } from "@/features/account/use-me"
-import { createQueryClient } from "@/lib/query-client"
+import { createQueryClient, persistOptions, queryPersister } from "@/lib/query-client"
 import { AccountError } from "@/features/account/account-error"
 
 import "@/styles/global.css"
@@ -41,10 +42,12 @@ function RootNavigator() {
   const signedIn = isSignedIn === true
   const consented = me.data?.hasCurrentConsent === true
 
-  // Drop the previous user's cached data on sign-out.
+  // Drop the previous user's cached data on sign-out, including the copy
+  // saved on the device.
   useEffect(() => {
     if (isLoaded && !signedIn) {
       queryClient.clear()
+      void queryPersister.removeClient()
     }
   }, [isLoaded, signedIn, queryClient])
 
@@ -91,9 +94,9 @@ export default function RootLayout() {
   return (
     // The token cache (expo-secure-store) is native only, so it's undefined on web.
     <ClerkProvider publishableKey={publishableKey} {...(tokenCache !== undefined && { tokenCache })}>
-      <QueryClientProvider client={queryClient}>
+      <PersistQueryClientProvider client={queryClient} persistOptions={persistOptions}>
         <RootNavigator />
-      </QueryClientProvider>
+      </PersistQueryClientProvider>
     </ClerkProvider>
   )
 }

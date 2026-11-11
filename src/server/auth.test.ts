@@ -30,6 +30,7 @@ const testEnv = {
   DATABASE_URL: "postgres://test",
   CLERK_SECRET_KEY: "sk_test",
   EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY: "pk_test",
+  CONTENT_CHANNEL: "approved" as const,
 }
 
 const user: User = {

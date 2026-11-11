@@ -21,6 +21,8 @@ function useMe() {
     queryKey: meQueryKey(userId),
     queryFn: async () => api({ path: "/api/me", schema: meSchema }),
     enabled: isSignedIn === true,
+    // Saved on the device, so the app opens past the consent check offline.
+    meta: { persist: true },
   })
 }
 

@@ -1,19 +1,37 @@
-import { router, useLocalSearchParams } from "expo-router"
+import type { AnswerValue } from "@/clinical/engine/types"
 
-import { Button } from "@/components/ui/button"
-import { PlaceholderScreen } from "@/components/placeholder-screen"
+import { useState } from "react"
+import { useLocalSearchParams } from "expo-router"
 
-export default function Question() {
+import { StepScreen } from "@/features/assessment/step-screen"
+import { useAssessment } from "@/features/assessment/use-assessment"
+import { QuestionInput } from "@/features/assessment/question-input"
+import { isAnswered } from "@/features/assessment/is-answered"
+
+/** One question of the assessment, chosen by the engine. */
+export default function QuestionScreen() {
   const { id } = useLocalSearchParams<{ id: string }>()
+  const { bundle, answers, answer } = useAssessment()
+  const question = bundle.assessment.questions.find(candidate => candidate.id === id)
+  const [value, setValue] = useState<AnswerValue | undefined>(answers[id])
+
+  if (question === undefined || question.type === "body-map") {
+    return null
+  }
 
   return (
-    <PlaceholderScreen
-      hasHeader
-      title="Assessment"
-      description={`Question "${id}" will go here. The clinical engine picks the next question from the answers so far (M2, M4).`}
+    <StepScreen
+      questionId={question.id}
+      prompt={question.prompt}
+      help={question.help}
+      canContinue={isAnswered(question, value)}
+      onContinue={() => {
+        if (value !== undefined) {
+          answer(question.id, value)
+        }
+      }}
     >
-      {/* The result replaces the questions, so back from the result can't reopen them. */}
-      <Button onPress={() => router.replace("/assessment/result")}>See result</Button>
-    </PlaceholderScreen>
+      <QuestionInput question={question} value={value} onChange={setValue} />
+    </StepScreen>
   )
 }

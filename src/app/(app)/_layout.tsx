@@ -1,11 +1,16 @@
 import { Stack } from "expo-router"
 
+import { useSessionSync } from "@/features/program/api"
+
 /*
  * The signed-in app: the tabs, with the modal flows that open above them.
  * Assessment and the session player are full screen and can't be swiped
  * away, so a half-finished flow is only left on purpose.
  */
 export default function AppLayout() {
+  // Sends sessions completed offline whenever the app is open and online.
+  useSessionSync()
+
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" />

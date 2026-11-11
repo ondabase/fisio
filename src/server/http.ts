@@ -6,7 +6,7 @@ import type { z } from "zod"
  * content, so no health data ends up in responses or logs.
  */
 
-type ErrorCode = "unauthorized" | "invalid_request" | "conflict" | "internal"
+type ErrorCode = "unauthorized" | "invalid_request" | "not_found" | "conflict" | "incomplete" | "internal"
 
 function errorResponse(status: number, code: ErrorCode, message: string) {
   return Response.json({

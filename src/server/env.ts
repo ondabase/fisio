@@ -9,6 +9,12 @@ const serverEnvSchema = z.object({
   DATABASE_URL: z.url(),
   CLERK_SECRET_KEY: z.string().startsWith("sk_"),
   EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().startsWith("pk_"),
+  /**
+   * "approved" serves only PT-approved content. "draft" also serves the
+   * newest unapproved draft, for development on placeholder content.
+   * Never set "draft" in production.
+   */
+  CONTENT_CHANNEL: z.enum(["approved", "draft"]).default("approved"),
 })
 
 type ServerEnv = z.infer<typeof serverEnvSchema>

@@ -4,6 +4,7 @@ import type { IconProps } from "@/components/ui/icon"
 import { useState } from "react"
 import { Alert, Switch, View } from "react-native"
 
+import { colors } from "@/styles/colors"
 import { Card } from "@/components/ui/card"
 import { Icon } from "@/components/ui/icon"
 import { Text } from "@/components/ui/text"
@@ -13,9 +14,6 @@ import { ApiError } from "@/lib/api"
 import { ListGroup, ListRow } from "@/components/ui/list-row"
 import { useRecordConsent } from "@/features/account/use-me"
 import { consentSections, CURRENT_CONSENT_VERSION } from "@/lib/consent"
-
-// Switch takes a color value rather than a class. Matches `--color-primary`.
-const PRIMARY = "#077f83"
 
 const sectionIcons: Record<ConsentSection["id"], IconProps["name"]> = {
   "wellness": { ios: "checkmark.shield", android: "verified_user", web: "verified_user" },
@@ -78,7 +76,7 @@ export default function Consent() {
             <Switch
               value={adult}
               onValueChange={setAdult}
-              trackColor={{ true: PRIMARY }}
+              trackColor={{ true: colors.primary }}
               accessibilityLabel="I'm 18 or older"
             />
           )}
@@ -89,7 +87,7 @@ export default function Consent() {
             <Switch
               value={agreed}
               onValueChange={setAgreed}
-              trackColor={{ true: PRIMARY }}
+              trackColor={{ true: colors.primary }}
               accessibilityLabel="I agree to Fisio storing and using my health data as described above"
             />
           )}

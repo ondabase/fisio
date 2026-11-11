@@ -1,18 +1,33 @@
-import { router } from "expo-router"
+import { useState } from "react"
 
-import { Button } from "@/components/ui/button"
-import { PlaceholderScreen } from "@/components/placeholder-screen"
+import { BodyMap } from "@/features/body-map/body-map"
+import { StepScreen } from "@/features/assessment/step-screen"
+import { useAssessment } from "@/features/assessment/use-assessment"
 
-export default function BodyMap() {
+/** The body-map question, which starts the assessment. */
+export default function BodyMapScreen() {
+  const { bundle, answers, answer } = useAssessment()
+  const question = bundle.assessment.questions.find(candidate => candidate.type === "body-map")
+  const saved = question === undefined
+    ? undefined
+    : answers[question.id]
+  const [regions, setRegions] = useState<Array<string>>(Array.isArray(saved)
+    ? saved
+    : [])
+
+  if (question === undefined) {
+    return null
+  }
+
   return (
-    <PlaceholderScreen
-      hasHeader
-      title="Where does it hurt?"
-      description="The front and back body map will go here (M3). Selected regions start the adaptive questions."
+    <StepScreen
+      questionId={question.id}
+      prompt={question.prompt}
+      help={question.help}
+      canContinue={regions.length > 0}
+      onContinue={() => answer(question.id, regions)}
     >
-      <Button onPress={() => router.push("/assessment/question/q1")}>Continue</Button>
-      {/* First screen of the assessment stack, so back closes the modal. */}
-      <Button variant="outline" onPress={() => router.back()}>Close</Button>
-    </PlaceholderScreen>
+      <BodyMap regions={bundle.regions} value={regions} onChange={setRegions} />
+    </StepScreen>
   )
 }

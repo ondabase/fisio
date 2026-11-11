@@ -5,10 +5,10 @@ This is the single source of truth for the Fisio MVP. Part 1 is the agreed speci
 ## Progress
 - [x] M0 — Foundations (iOS verified; Android deferred)
 - [x] M1 — Auth, onboarding, user record (iOS verified; Android deferred)
-- [ ] M2 — Clinical content model + engine + vignettes
-- [ ] M3 — Body map
-- [ ] M4 — Assessment end to end
-- [ ] M5 — Program, session player, video, offline
+- [x] M2 — Clinical content model + engine + vignettes (content is a DRAFT placeholder until the PT signs it)
+- [x] M3 — Body map (placeholder figure until the designer's SVG; VoiceOver path covered by tests, not yet tried on a device)
+- [x] M4 — Assessment end to end (on DRAFT content; all vignettes replayed through the UI in tests, eligible and urgent runs checked by hand on iOS)
+- [x] M5 — Program, session player, video, offline (video is a "coming soon" placeholder until Cloudflare Stream and recordings exist; offline sync checked by simulating a server outage on iOS)
 - [ ] M6 — Check-ins, adjustment, progress, reminders
 - [ ] M7 — Billing & gating
 - [ ] M8 — Privacy, observability, deletion

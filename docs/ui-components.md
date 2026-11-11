@@ -67,6 +67,9 @@ When adding a token:
 - `ListRow` and `ListGroup` (`ui/list-row.tsx`): rows for settings and details. A row is a button only when it has `onPress`.
 - `Icon` (`ui/icon.tsx`): SF / Material symbols colored with a `text-*` class. Decorative unless given an `accessibilityLabel`.
 - `Button` (`ui/button.tsx`).
+- `SegmentedControl` (`ui/segmented-control.tsx`): a pill choice between a few options, announced as a radio group.
+
+Props that take a color value rather than a class (native tab tints, `Switch` tracks, SVG fills) use `src/styles/colors.ts`, which mirrors the tokens. Keep the two in sync.
 
 ## Component Variants
 

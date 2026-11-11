@@ -31,3 +31,9 @@ jobs:
       - run: npm run check
 
       - run: npm test -- --ci
+
+      # The clinical engine needs 100% coverage, and content can't ship unless
+      # every vignette passes (PLAN.md §5–6).
+      - run: npm run test:clinical -- --ci
+
+      - run: npm run content:publish -- lbp --dry-run

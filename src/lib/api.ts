@@ -86,7 +86,10 @@ function useApi() {
     if (!response.ok) {
       throw await readError(response)
     }
-    return schema.parse(await response.json())
+    // 204 No Content has no body to parse.
+    return schema.parse(response.status === 204
+      ? undefined
+      : await response.json())
   }, [getToken])
 }
 

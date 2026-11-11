@@ -1,0 +1,842 @@
+[
+  {
+    "id": "acute-back-only",
+    "kind": "assessment",
+    "description": "Recent back pain, no red flags, moderate pain: general track from the start.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5
+    },
+    "expect": {
+      "outcome": "eligible",
+      "flags": [],
+      "trackId": "general",
+      "startPhase": "calm",
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "chronic-mild-low-impact",
+    "kind": "assessment",
+    "description": "Long-standing mild pain with little daily impact: general track, skipping ahead to build.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "over-12-weeks",
+      "pain-intensity": 3,
+      "daily-impact": 3
+    },
+    "expect": {
+      "outcome": "eligible",
+      "flags": [],
+      "trackId": "general",
+      "startPhase": "build",
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "chronic-mild-high-impact",
+    "kind": "assessment",
+    "description": "Long-standing mild pain that still limits daily life: start gently.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "over-12-weeks",
+      "pain-intensity": 3,
+      "daily-impact": 6
+    },
+    "expect": {
+      "outcome": "eligible",
+      "flags": [],
+      "trackId": "general",
+      "startPhase": "calm",
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "chronic-moderate",
+    "kind": "assessment",
+    "description": "Long-standing moderate pain: start gently.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "over-12-weeks",
+      "pain-intensity": 6,
+      "daily-impact": 3
+    },
+    "expect": {
+      "outcome": "eligible",
+      "flags": [],
+      "trackId": "general",
+      "startPhase": "calm",
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "subacute-mild",
+    "kind": "assessment",
+    "description": "6 to 12 weeks of mild pain doesn't skip ahead; only long-standing pain does.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "6-to-12-weeks",
+      "pain-intensity": 2,
+      "daily-impact": 2
+    },
+    "expect": {
+      "outcome": "eligible",
+      "flags": [],
+      "trackId": "general",
+      "startPhase": "calm",
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "leg-dominant",
+    "kind": "assessment",
+    "description": "Pain below the knee that bothers more than the back: leg symptoms track.",
+    "answers": {
+      "pain-regions": [
+        "lower-back",
+        "below-knee-left"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5,
+      "leg-symptoms": "leg-more"
+    },
+    "expect": {
+      "outcome": "eligible",
+      "flags": [],
+      "trackId": "leg-symptoms",
+      "startPhase": "calm",
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "leg-about-same",
+    "kind": "assessment",
+    "description": "Leg and back bother about the same: leg symptoms track.",
+    "answers": {
+      "pain-regions": [
+        "lower-back",
+        "buttock-right",
+        "below-knee-right"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5,
+      "leg-symptoms": "about-same"
+    },
+    "expect": {
+      "outcome": "eligible",
+      "flags": [],
+      "trackId": "leg-symptoms",
+      "startPhase": "calm",
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "leg-but-back-more",
+    "kind": "assessment",
+    "description": "Pain below the knee, but the back bothers more: general track.",
+    "answers": {
+      "pain-regions": [
+        "lower-back",
+        "below-knee-left"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5,
+      "leg-symptoms": "back-more"
+    },
+    "expect": {
+      "outcome": "eligible",
+      "flags": [],
+      "trackId": "general",
+      "startPhase": "calm",
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "buttock-and-thigh-only",
+    "kind": "assessment",
+    "description": "Pain into the buttock and thigh but not below the knee: no leg question, general track.",
+    "answers": {
+      "pain-regions": [
+        "lower-back",
+        "buttock-left",
+        "thigh-back-left"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5
+    },
+    "expect": {
+      "outcome": "eligible",
+      "flags": [],
+      "trackId": "general",
+      "startPhase": "calm",
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "unasked-answer-ignored",
+    "kind": "assessment",
+    "description": "An answer to the leg question when no leg region was marked is ignored.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5,
+      "leg-symptoms": "leg-more"
+    },
+    "expect": {
+      "outcome": "eligible",
+      "flags": [],
+      "trackId": "general",
+      "startPhase": "calm",
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "saddle-numbness-stops",
+    "kind": "assessment",
+    "description": "Saddle numbness stops the assessment immediately as urgent.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": true
+    },
+    "expect": {
+      "outcome": "urgent",
+      "flags": [
+        "saddle-numbness"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": true
+    }
+  },
+  {
+    "id": "saddle-numbness-stops-even-with-later-answers",
+    "kind": "assessment",
+    "description": "Saddle numbness stops at that question even if later answers were sent.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": true,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5
+    },
+    "expect": {
+      "outcome": "urgent",
+      "flags": [
+        "saddle-numbness"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": true
+    }
+  },
+  {
+    "id": "bladder-bowel-stops",
+    "kind": "assessment",
+    "description": "New bladder or bowel trouble stops the assessment as urgent.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": true
+    },
+    "expect": {
+      "outcome": "urgent",
+      "flags": [
+        "bladder-bowel-change"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": true
+    }
+  },
+  {
+    "id": "leg-weakness-stops",
+    "kind": "assessment",
+    "description": "New or worsening leg weakness stops the assessment as urgent.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": true
+    },
+    "expect": {
+      "outcome": "urgent",
+      "flags": [
+        "progressive-weakness"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": true
+    }
+  },
+  {
+    "id": "fever-refers",
+    "kind": "assessment",
+    "description": "Fever with back pain: see a clinician first.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": true,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5
+    },
+    "expect": {
+      "outcome": "refer",
+      "flags": [
+        "possible-infection"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "cancer-history-refers",
+    "kind": "assessment",
+    "description": "History of cancer: see a clinician first.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": true,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5
+    },
+    "expect": {
+      "outcome": "refer",
+      "flags": [
+        "cancer-history"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "weight-loss-refers",
+    "kind": "assessment",
+    "description": "Unexplained weight loss: see a clinician first.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": true,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5
+    },
+    "expect": {
+      "outcome": "refer",
+      "flags": [
+        "unexplained-weight-loss"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "trauma-refers",
+    "kind": "assessment",
+    "description": "Pain after significant trauma: see a clinician first.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": true,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5
+    },
+    "expect": {
+      "outcome": "refer",
+      "flags": [
+        "significant-trauma"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "night-pain-refers",
+    "kind": "assessment",
+    "description": "Constant severe night pain: see a clinician first.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": false,
+      "night-pain": true,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5
+    },
+    "expect": {
+      "outcome": "refer",
+      "flags": [
+        "constant-night-pain"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "several-refer-flags",
+    "kind": "assessment",
+    "description": "Cancer history with weight loss raises both flags.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": true,
+      "weight-loss": true,
+      "trauma": false,
+      "night-pain": false,
+      "duration": "under-6-weeks",
+      "pain-intensity": 5,
+      "daily-impact": 5
+    },
+    "expect": {
+      "outcome": "refer",
+      "flags": [
+        "cancer-history",
+        "unexplained-weight-loss"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "refer-overrides-track",
+    "kind": "assessment",
+    "description": "A refer flag means no program, even when a track would otherwise match.",
+    "answers": {
+      "pain-regions": [
+        "lower-back"
+      ],
+      "saddle-numbness": false,
+      "bladder-bowel": false,
+      "leg-weakness": false,
+      "fever": false,
+      "cancer-history": false,
+      "weight-loss": false,
+      "trauma": true,
+      "night-pain": false,
+      "duration": "over-12-weeks",
+      "pain-intensity": 3,
+      "daily-impact": 3
+    },
+    "expect": {
+      "outcome": "refer",
+      "flags": [
+        "significant-trauma"
+      ],
+      "trackId": null,
+      "startPhase": null,
+      "earlyStop": false
+    }
+  },
+  {
+    "id": "checkin-better-progresses",
+    "kind": "check-in",
+    "description": "Better, did most sessions, pain 5 or less: move up a phase.",
+    "program": {
+      "trackId": "general",
+      "phaseId": "calm"
+    },
+    "answers": {
+      "checkin-saddle-numbness": false,
+      "checkin-bladder-bowel": false,
+      "checkin-leg-weakness": false,
+      "checkin-new-symptoms": false,
+      "checkin-change": "better",
+      "checkin-pain": 4,
+      "checkin-adherence": "most"
+    },
+    "expect": {
+      "decision": "progress",
+      "toPhase": "build",
+      "flags": []
+    }
+  },
+  {
+    "id": "checkin-better-final-phase-holds",
+    "kind": "check-in",
+    "description": "Better in the final phase: stay there.",
+    "program": {
+      "trackId": "general",
+      "phaseId": "strengthen"
+    },
+    "answers": {
+      "checkin-saddle-numbness": false,
+      "checkin-bladder-bowel": false,
+      "checkin-leg-weakness": false,
+      "checkin-new-symptoms": false,
+      "checkin-change": "better",
+      "checkin-pain": 4,
+      "checkin-adherence": "most"
+    },
+    "expect": {
+      "decision": "hold",
+      "toPhase": "strengthen",
+      "flags": []
+    }
+  },
+  {
+    "id": "checkin-worse-regresses",
+    "kind": "check-in",
+    "description": "Worse: move back a phase.",
+    "program": {
+      "trackId": "general",
+      "phaseId": "build"
+    },
+    "answers": {
+      "checkin-saddle-numbness": false,
+      "checkin-bladder-bowel": false,
+      "checkin-leg-weakness": false,
+      "checkin-new-symptoms": false,
+      "checkin-change": "worse",
+      "checkin-pain": 4,
+      "checkin-adherence": "most"
+    },
+    "expect": {
+      "decision": "regress",
+      "toPhase": "calm",
+      "flags": []
+    }
+  },
+  {
+    "id": "checkin-worse-first-phase-holds",
+    "kind": "check-in",
+    "description": "Worse in the first phase: stay there.",
+    "program": {
+      "trackId": "leg-symptoms",
+      "phaseId": "calm"
+    },
+    "answers": {
+      "checkin-saddle-numbness": false,
+      "checkin-bladder-bowel": false,
+      "checkin-leg-weakness": false,
+      "checkin-new-symptoms": false,
+      "checkin-change": "worse",
+      "checkin-pain": 4,
+      "checkin-adherence": "most"
+    },
+    "expect": {
+      "decision": "hold",
+      "toPhase": "calm",
+      "flags": []
+    }
+  },
+  {
+    "id": "checkin-same-holds",
+    "kind": "check-in",
+    "description": "About the same: stay in the phase.",
+    "program": {
+      "trackId": "general",
+      "phaseId": "build"
+    },
+    "answers": {
+      "checkin-saddle-numbness": false,
+      "checkin-bladder-bowel": false,
+      "checkin-leg-weakness": false,
+      "checkin-new-symptoms": false,
+      "checkin-change": "same",
+      "checkin-pain": 4,
+      "checkin-adherence": "most"
+    },
+    "expect": {
+      "decision": "hold",
+      "toPhase": "build",
+      "flags": []
+    }
+  },
+  {
+    "id": "checkin-low-adherence-holds",
+    "kind": "check-in",
+    "description": "Better but did few sessions: stay in the phase.",
+    "program": {
+      "trackId": "general",
+      "phaseId": "calm"
+    },
+    "answers": {
+      "checkin-saddle-numbness": false,
+      "checkin-bladder-bowel": false,
+      "checkin-leg-weakness": false,
+      "checkin-new-symptoms": false,
+      "checkin-change": "better",
+      "checkin-pain": 4,
+      "checkin-adherence": "few"
+    },
+    "expect": {
+      "decision": "hold",
+      "toPhase": "calm",
+      "flags": []
+    }
+  },
+  {
+    "id": "checkin-better-but-high-pain-holds",
+    "kind": "check-in",
+    "description": "Better but pain still above 5: stay in the phase.",
+    "program": {
+      "trackId": "general",
+      "phaseId": "calm"
+    },
+    "answers": {
+      "checkin-saddle-numbness": false,
+      "checkin-bladder-bowel": false,
+      "checkin-leg-weakness": false,
+      "checkin-new-symptoms": false,
+      "checkin-change": "better",
+      "checkin-pain": 7,
+      "checkin-adherence": "most"
+    },
+    "expect": {
+      "decision": "hold",
+      "toPhase": "calm",
+      "flags": []
+    }
+  },
+  {
+    "id": "checkin-saddle-numbness-stops",
+    "kind": "check-in",
+    "description": "Saddle numbness at check-in stops the program.",
+    "program": {
+      "trackId": "general",
+      "phaseId": "build"
+    },
+    "answers": {
+      "checkin-saddle-numbness": true
+    },
+    "expect": {
+      "decision": "stop",
+      "toPhase": "build",
+      "flags": [
+        "checkin-saddle-numbness"
+      ]
+    }
+  },
+  {
+    "id": "checkin-new-symptoms-stops",
+    "kind": "check-in",
+    "description": "New worrying symptoms stop the program and refer.",
+    "program": {
+      "trackId": "general",
+      "phaseId": "build"
+    },
+    "answers": {
+      "checkin-saddle-numbness": false,
+      "checkin-bladder-bowel": false,
+      "checkin-leg-weakness": false,
+      "checkin-new-symptoms": true,
+      "checkin-change": "better",
+      "checkin-pain": 4,
+      "checkin-adherence": "most"
+    },
+    "expect": {
+      "decision": "stop",
+      "toPhase": "build",
+      "flags": [
+        "checkin-new-symptoms"
+      ]
+    }
+  },
+  {
+    "id": "checkin-bladder-bowel-stops",
+    "kind": "check-in",
+    "description": "New bladder or bowel trouble at check-in stops the program.",
+    "program": {
+      "trackId": "leg-symptoms",
+      "phaseId": "calm"
+    },
+    "answers": {
+      "checkin-saddle-numbness": false,
+      "checkin-bladder-bowel": true
+    },
+    "expect": {
+      "decision": "stop",
+      "toPhase": "calm",
+      "flags": [
+        "checkin-bladder-bowel-change"
+      ]
+    }
+  },
+  {
+    "id": "checkin-leg-weakness-stops",
+    "kind": "check-in",
+    "description": "New leg weakness at check-in stops the program.",
+    "program": {
+      "trackId": "general",
+      "phaseId": "strengthen"
+    },
+    "answers": {
+      "checkin-saddle-numbness": false,
+      "checkin-bladder-bowel": false,
+      "checkin-leg-weakness": true
+    },
+    "expect": {
+      "decision": "stop",
+      "toPhase": "strengthen",
+      "flags": [
+        "checkin-progressive-weakness"
+      ]
+    }
+  }
+]
